@@ -8,7 +8,7 @@ public class Flights {
     private Locations endLocation;
     private LocalDateTime dateTime;
     private double price;
-    //private Customer[] customersBooked;
+    private Customer customersBooked;
 
 
     public String getFlightNumber() {
@@ -26,7 +26,7 @@ public class Flights {
     public double getPrice() {
         return price;
     }
-    public Customer[] getCustomersBooked() {
+    public Customer getCustomersBooked() {
         return customersBooked;
     }
 
@@ -36,12 +36,12 @@ public class Flights {
             Locations endLocation,
             LocalDateTime dateTime,
             double price,
-            Customer[] customersBooked) {
+            Customer customerBooking) {
         this.flightNumber = flightNumber;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.dateTime = dateTime;
         this.price = price;
-        this.customersBooked = customersBooked;
+        this.customersBooked = customerBooking;
     }
 }

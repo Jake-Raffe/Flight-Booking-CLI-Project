@@ -1,5 +1,7 @@
 package com.bnta.customer;
 
+//import com.bnta.flights.Flights;
+
 import java.util.Objects;
 
 public class Customer {
@@ -10,6 +12,7 @@ public class Customer {
     private int phoneNumber;
     private int passportNumber;
     private Luggage luggage;
+    private Flights flights;
     // 1. customers/ user
     // name
     // email
@@ -19,23 +22,27 @@ public class Customer {
     // luggage?
 
     //default constructor
-    public Customer(){}
+    //public Customer(){}
 
     //constructor for just name
-    public Customer(String name){
-        this.name = name;
-    }
+    //public Customer(String name){
+    //    this.name = name;
+    //}
 
    // Customer(String name);
 
-    public Customer(String name, String email, int id, int phoneNumber, Luggage luggage){
+    public Customer(String name, String email, int id, int phoneNumber, Luggage luggage/*, Flights flights*/){
         this.name = name;
         this.email = email;
         this.id = id;
         this.phoneNumber = phoneNumber;
         this.passportNumber = passportNumber;
         this.luggage = luggage;
+      //  this.flights = flights;
     }
+
+    public Customer(){}
+
     public String getName(){
         return name;
     }
@@ -48,7 +55,7 @@ public class Customer {
         return email;
     }
     public void setEmail(String email){
-        this.name = email;
+        this.email = email;
     }
 
     public int getId(){
@@ -80,17 +87,26 @@ public class Customer {
         this.luggage = luggage;
     }
 
+    public Flights getFlight() {
+        return flights;
+    }
+
+    public void setFlight(Flights flights) {
+        this.flights = flights;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id == customer.id && phoneNumber == customer.phoneNumber && passportNumber == customer.passportNumber && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && luggage == customer.luggage;
+        return id == customer.id && phoneNumber == customer.phoneNumber && passportNumber == customer.passportNumber && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && luggage == customer.luggage && Objects.equals(flights, customer.flight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, id, phoneNumber, passportNumber, luggage);
+        return Objects.hash(name, email, id, phoneNumber, passportNumber, luggage, flights);
     }
 
     @Override
@@ -101,7 +117,8 @@ public class Customer {
                 ", id=" + id +
                 ", phoneNumber=" + phoneNumber +
                 ", passportNumber=" + passportNumber +
-                ", luggage=" + luggage +
+                ", luggage=" + luggage+
+                ", flights=" + flights +
                 '}';
     }
 }

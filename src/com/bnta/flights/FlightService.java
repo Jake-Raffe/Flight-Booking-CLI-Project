@@ -1,6 +1,9 @@
 package com.bnta.flights;
+import com.bnta.flights.Airline;
 
+import com.bnta.customer.Customer;
 import jdk.javadoc.doclet.Taglet;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -13,11 +16,34 @@ public class FlightService {
 
 
 public int getFlightService() {
-    Scanner flightScanner = new Scanner(System.in); // Initiate and run the scanner.
-    System.out.println("");
+    Scanner flightScanner = new Scanner(System.in);
+    System.out.println("Please Type for the following Options");
+    System.out.println(" 1 - Display Booked Flights" + " 2 - Display All Flights"+ " 3 - Display Flight by ID");
+    int numberInput = flightScanner.nextInt();
+
+    return numberInput;
 }
 
-    public Flights[] getBookedFlights(Airline airline){
+    public void Menu(){
+        int uInput;
+
+        while(true) {
+            uInput = getFlightService();
+            if (uInput == 1) {
+                getBookedFlights();
+            } else if (uInput == 2) {
+                displayAllFlights();
+            } else if (uInput == 3) {
+                displayFlightById();
+                break;
+            }
+            else {
+                System.out.println("Sorry input not recognised. Try again...");
+            }
+        }
+}
+
+    public void getBookedFlights(@NotNull Airline airline){
         // 1. get flights from airline
         Flights[] allArray = new Flights[airline.getFlights().length];
         Flights[] bookedFlights = new Flights[allArray.length];
@@ -35,18 +61,28 @@ public int getFlightService() {
             } else {
             System.out.println("No flights in array");
         }
-        return bookedFlights;
+        for (Flights f:
+             allArray) {
+            System.out.println(f.getFlightNumber());
+        }
+
     }
 
     public void displayAllFlights(){
         //1. Call both enums that shows available flight locations and flight number for the corresponding locations
-        String flightsAvailable = String.valueOf(Locations.values())+ " " + String.valueOf(FlightNumber.values());
+        String flightsAvailable = new String(String.valueOf(Locations.values())+ " " + String.valueOf(FlightNumber.values()));
         System.out.println(flightsAvailable);// Check how it looks on the console when your print this string.
 
     }
-    public void displayFlightForID(){
-        //We will need to call the customer's iD, scanner for input for the registered ID
-     int customerId = 0; // change from zero to call customer Id number from Main/CustomerService
+    public void displayFlightById(Airline airline){
+        // 1. make scanner to take customer ID
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input customer ID number: ");
+        // 2. find customer from ID value
+        int id = scanner.nextInt();
+        Customer[] customers = airline.getCustomers();
+        // 3. find customer's flight and print
+
 
     }
 }
