@@ -1,17 +1,19 @@
 package com.bnta.flights;
 
+import com.bnta.customer.Customer;
+
 import java.time.LocalDateTime;
 
 public class Flights {
-    private String flightNumber;
+    private FlightNumber flightNumber;
     private Locations startLocation;
     private Locations endLocation;
     private LocalDateTime dateTime;
     private double price;
-    private Customer customersBooked;
+    public Customer[] customersBooked;
 
 
-    public String getFlightNumber() {
+    public FlightNumber getFlightNumber() {
         return flightNumber;
     }
     public Locations getStartLocation() {
@@ -26,17 +28,20 @@ public class Flights {
     public double getPrice() {
         return price;
     }
-    public Customer getCustomersBooked() {
+    public Customer[] getCustomersBooked() {
         return customersBooked;
+    }
+    public void setCustomersBooked(Customer[] customerBooking){
+        this.customersBooked = customerBooking;
     }
 
     public void setFlights(
-            String flightNumber,
+            FlightNumber flightNumber,
             Locations startLocation,
             Locations endLocation,
             LocalDateTime dateTime,
             double price,
-            Customer customerBooking) {
+            Customer[] customerBooking) {
         this.flightNumber = flightNumber;
         this.startLocation = startLocation;
         this.endLocation = endLocation;

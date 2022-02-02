@@ -1,7 +1,7 @@
 package com.bnta.customer;
 
-//import com.bnta.flights.Flights;
-
+import com.bnta.flights.Flights;
+import com.bnta.flights.Airline;
 import java.util.Objects;
 
 public class Customer {
@@ -31,14 +31,14 @@ public class Customer {
 
    // Customer(String name);
 
-    public Customer(String name, String email, int id, int phoneNumber, Luggage luggage/*, Flights flights*/){
+    public Customer(String name, String email, int id, int phoneNumber, Luggage luggage, Flights flights){
         this.name = name;
         this.email = email;
         this.id = id;
         this.phoneNumber = phoneNumber;
         this.passportNumber = passportNumber;
         this.luggage = luggage;
-      //  this.flights = flights;
+        this.flights = flights;
     }
 
     public Customer(){}
@@ -101,7 +101,7 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id == customer.id && phoneNumber == customer.phoneNumber && passportNumber == customer.passportNumber && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && luggage == customer.luggage && Objects.equals(flights, customer.flight);
+        return id == customer.id && phoneNumber == customer.phoneNumber && passportNumber == customer.passportNumber && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && luggage == customer.luggage && Objects.equals(flights, customer.flights);
     }
 
     @Override
