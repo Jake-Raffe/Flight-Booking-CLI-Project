@@ -13,24 +13,30 @@ public class FlightService {
     //2. Loop.
     //3. Throw error message if user chooses wrong option
 
-    public void createFlights(Flights flights) {
-    Flights flightLondon1 = new Flights();
-    flightLondon1.setFlights(FlightNumber.BRL456, Locations.LONDON, Locations.BERLIN, 2022-02-12-08-30,120.95,null );
-
+    public void createFlights(Airline airline) {
+    Flights[] flightArr = new Flights[7];
+        Flights flightLondon1 = new Flights();
+    flightLondon1.setFlights(FlightNumber.BRL456, Locations.LONDON, Locations.BERLIN, "12 February 2022 08:30:00",120.95,null );
+        flightArr[0] = flightLondon1;
     Flights flightBerlin1 = new Flights();
-    flightBerlin1.setFlights(FlightNumber.LDN211, Locations.BERLIN, Locations.LONDON, 2022-02-14-12-45-00, 279.99, null);
-
+    flightBerlin1.setFlights(FlightNumber.LDN211, Locations.BERLIN, Locations.LONDON, "14 February 2022 12:45:00", 279.99, null);
+        flightArr[1] = flightBerlin1;
     Flights flightLondon2 = new Flights();
-    flightLondon2.setFlights(FlightNumber.LDN256, Locations.LONDON, Locations.PARIS, 2022-02-14-06-00-00, 355.65, null);
-
+    flightLondon2.setFlights(FlightNumber.LDN256, Locations.LONDON, Locations.PARIS,"14 February 2022 06:00:00", 355.65, null);
+        flightArr[2] = flightLondon2;
     Flights flightLondon3 = new Flights();
-    flightLondon3.setFlights(FlightNumber.LDN062, Locations.LONDON, Locations.VENICE, 2022-04-05-11-30-00, 79.99, null);
-
+    flightLondon3.setFlights(FlightNumber.LDN062, Locations.LONDON, Locations.VENICE,"12 March 2022 16:20:00", 79.99, null);
+        flightArr[3] = flightLondon3;
     Flights flightEdinburgh1 = new Flights();
-    flightEdinburgh1.setFlights(FlightNumber.EDN456, Locations.EDINBURGH, Locations.MADRID, 2022-05-13-14-20-00, 25.75,null);
-
-        Flights flightMadrid1 = new Flights();
-        flightMadrid1.setFlights(FlightNumber.MDR345, Locations.MADRID, Locations.EDINBURGH, 2022-02-29-23-30-00, 110.17, null);
+    flightEdinburgh1.setFlights(FlightNumber.EDN456, Locations.EDINBURGH, Locations.MADRID, "13 May 2022 13:13:00", 25.75,null);
+        flightArr[4] = flightEdinburgh1;
+    Flights flightMadrid1 = new Flights();
+    flightMadrid1.setFlights(FlightNumber.MDR345, Locations.MADRID, Locations.EDINBURGH, "28 June 2022 21:50:00", 110.17, null);
+        flightArr[5] = flightMadrid1;
+    Flights flightVenice1 = new Flights();
+    flightVenice1.setFlights(FlightNumber.VCE675, Locations.VENICE, Locations.MADRID, "26 July 2022 16:35:00", 207.35, null);
+        flightArr[6] = flightVenice1;
+        airline.setFlights(flightArr);
     }
 
     public void managerMenu(Airline airline){

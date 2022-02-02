@@ -21,6 +21,7 @@ public class CustomerService {
             if (uInput == 1) {
                 newCustomer1(airline);
                 bookFlightOption();
+//                bookFlight();
                 System.out.println("Your flight has been booked.\nWould you like to use another service?\n(y - Yes / n - No)");
                 Scanner scan = new Scanner(System.in);
                 String input = scan.nextLine();
@@ -79,7 +80,7 @@ public class CustomerService {
         //customer phone number scanner
         System.out.println("Enter phone Number:");
         int phoneNumber = scanner.nextInt();
-        newCustomer.setPhoneNumber(phoneNumber)
+        newCustomer.setPhoneNumber(phoneNumber);
 
         //while loop to add customers luggage size and convert string input into Enum property
        boolean sizeDeclared = true;
@@ -158,7 +159,7 @@ public class CustomerService {
             }
 
             public static void displayFlightById(Airline airline){
-                System.out.println("Enter Customer ID number to see flight bookings:  ");
+                System.out.println("Enter Customer ID number to see booked flights:  ");
                 Scanner scanner = new Scanner(System.in);
                 int customerID = scanner.nextInt();
                 for (Customer customer: airline.getCustomers()){
@@ -175,27 +176,27 @@ public class CustomerService {
                 System.out.println(flights.getFlights());
             }
 
+            //method to quit. Double checks if user wants to quit. Exits program if yes, goes back to customer menu if no.
             public static void quitMethod(){
                 System.out.println("Are you sure you want to quit program? \n(y - Yes / n - No, use another service)");
                 Scanner scan = new Scanner(System.in);
                 String input = scan.nextLine();
-                if (input.equals("y")) {
-                    //quit program
+                if (input.equals("y")){
+                    //quit method
+                    System.exit(0);
                 } else if (input.equals("n")) {
                     getCustomerOptions();
                 } else {
                     System.out.println("Sorry, please choose from the options provided (y - Yes / n - No).");
                     input = scan.nextLine();
                 }
-
-
             }
 
+            //method to book a flight currently INCOMPLETE
             public static void bookFlightOption(){
                 Airline flights = new Airline();
                 System.out.println(flights.getFlights());
-                System.out.println("Please select ");
-
+                System.out.println("Please select the flight you wish to take: ");
 
             }
 }

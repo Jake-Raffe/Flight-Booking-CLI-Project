@@ -57,13 +57,14 @@ public class Main {
     // luggage (null, small, large / num of bags)
 
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         // create initial available flights, and instances
         Airline airline = new Airline();
         Main testMenu = new Main();
         CustomerService test = new CustomerService();
         FlightService run = new FlightService();
-        createFlights();
+        run.createFlights(airline);
+
 
         // customer/manger screen menu
         getMenuOptions();
@@ -86,7 +87,7 @@ public class Main {
 
     }
 
-    int getMenuOptions() {
+    static int getMenuOptions() {
         // scanner to take terminal input to either customer or manager menu
         System.out.println("Welcome to MJMC-Airlines!\nPlease pick an option from the menu below:");
         Scanner menuScanner = new Scanner(System.in);
@@ -95,7 +96,7 @@ public class Main {
         return numberInput;
     }
 
-    boolean managerLogin() {
+   static  boolean managerLogin() {
         int num = 0;
         Scanner scan = new Scanner(System.in);
         boolean loop1 = true;
@@ -123,11 +124,14 @@ public class Main {
     }
 }
 // TO DO LIST
-
-
+// stop first menu repeating
+// customer menu repeats on quit
+// give option to continue after function in manager menu
+// customer display all flights doesn't work
+// after inputing customer details, flight is not booked
+// add exceptions to menus for inproper input format
         // annotate all with comments
 
-    // 1. Make createFlights() method to create initial flights list
 
     //CustomerService TO DO:
         // when booking a new flight
