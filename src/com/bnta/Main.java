@@ -37,8 +37,11 @@ public class Main {
                 // customers on flight
                 // airline
         // DAO
-            // 1. writes to file
-            // 2. edits (amend/remove from) file
+            // flightDAO
+            // customerDAO
+                // methods
+                    // 1. writes to file
+                    // 2. edits (amend/remove from) file
         // Service
             //
 
