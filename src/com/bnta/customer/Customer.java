@@ -4,4 +4,104 @@ import java.util.Objects;
 
 public class Customer {
 
+    private String name;
+    private String email;
+    private int id;
+    private int phoneNumber;
+    private int passportNumber;
+    private Luggage luggage;
+    // 1. customers/ user
+    // name
+    // email
+    // id (random generator)
+    // phone number
+    // passport number?
+    // luggage?
+
+    //default constructor
+    public Customer(){}
+
+    //constructor for just name
+    public Customer(String name){
+        this.name = name;
+    }
+
+   // Customer(String name);
+
+    public Customer(String name, String email, int id, int phoneNumber, Luggage luggage){
+        this.name = name;
+        this.email = email;
+        this.id = id;
+        this.phoneNumber = phoneNumber;
+        this.passportNumber = passportNumber;
+        this.luggage = luggage;
+    }
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.name = email;
+    }
+
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getPhoneNumber(){
+        return phoneNumber;
+    }
+    public void setPhoneNumber(int phoneNumber){
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getPassportNumber(){
+        return passportNumber;
+    }
+    public void setPassportNumber(int passportNumber){
+        this.passportNumber = passportNumber;
+    }
+
+    public Luggage getLuggage() {
+        return luggage;
+    }
+
+    public void setLuggage(Luggage luggage) {
+        this.luggage = luggage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id && phoneNumber == customer.phoneNumber && passportNumber == customer.passportNumber && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && luggage == customer.luggage;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, id, phoneNumber, passportNumber, luggage);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                ", phoneNumber=" + phoneNumber +
+                ", passportNumber=" + passportNumber +
+                ", luggage=" + luggage +
+                '}';
+    }
 }

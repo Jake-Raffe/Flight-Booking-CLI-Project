@@ -6,30 +6,42 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class FlightService {
-    //1. Show a bunch of options
-
-    //display available flights
-    // display booked flights
-    // max capacity ?
-    // Throw exception if flight is full
-    //Throw exception if the flight isn't valid
+    //1. Show a bunch of options from the POJO's below
+    //2. Loop.
+    //3. Throw error message if user chooses wrong option
 
 
-    public Flights[] displayBookedFlights(Airline airline){
+
+public int getFlightService() {
+    Scanner flightScanner = new Scanner(System.in); // Initiate and run the scanner.
+    System.out.println("");
+}
+
+    public Flights[] getBookedFlights(Airline airline){
         // 1. get flights from airline
-        // 2. loop through each flight
-        // 3. for each flight, loop through booked customers
-        // 4. if flight has booked customers, add flight to "bookedArray", if not -> skip
-        // 5. return array of booked flights: "bookedArray (flights with customers)
-
-
-
+        Flights[] allArray = new Flights[airline.getFlights().length];
+        Flights[] bookedFlights = new Flights[allArray.length];
+        int num = 0;
+        allArray = airline.getFlights();
+        // 2. check if flights[] contains flight, then check each flight fo a customer booking
+        if (allArray[0] != null) {
+                for (int i = 0; i < allArray.length; i++) {
+                    if (allArray[i].getCustomersBooked()[0] != null){
+                        // if has booking, add flight to booked array
+                        bookedFlights[num] = allArray[i];
+                        num++;
+                    }
+                }
+            } else {
+            System.out.println("No flights in array");
+        }
+        return bookedFlights;
     }
 
     public void displayAllFlights(){
-        //1. Call both enums that shows available flight locations and flight number for the corres
-        String flightsAvailable = String.valueOf(Locations.values())+ String.valueOf(FlightNumber);
-        System.out.println(flightsAvailable);
+        //1. Call both enums that shows available flight locations and flight number for the corresponding locations
+        String flightsAvailable = String.valueOf(Locations.values())+ " " + String.valueOf(FlightNumber.values());
+        System.out.println(flightsAvailable);// Check how it looks on the console when your print this string.
 
     }
     public void displayFlightForID(){

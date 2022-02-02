@@ -8,7 +8,7 @@ public class Flights {
     private Locations endLocation;
     private LocalDateTime dateTime;
     private double price;
-    private Customer[] customersBooked;
+    //private Customer[] customersBooked;
 
 
     public String getFlightNumber() {
