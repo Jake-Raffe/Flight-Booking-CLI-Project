@@ -1,6 +1,7 @@
 package com.bnta.flights;
 
 import com.bnta.customer.Customer;
+import com.bnta.customer.Luggage;
 
 import java.time.LocalDateTime;
 
@@ -49,4 +50,5 @@ public class Flights {
         this.price = price;
         this.customersBooked = customerBooking;
     }
+
 }

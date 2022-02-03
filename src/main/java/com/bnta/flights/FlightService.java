@@ -5,6 +5,7 @@ import com.bnta.customer.Customer;
 import jdk.javadoc.doclet.Taglet;
 
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FlightService {
@@ -16,9 +17,21 @@ public class FlightService {
 
 
     public void managerMenu(Airline airline){
+    System.out.println("\nWelcome manager. Please select an option from the menu below:");
     boolean loop = true;
+    int uInput = 0;
         while(loop) {
-            int uInput = getFlightService();
+            boolean correct = true;
+            while (correct) {
+                try {
+                    uInput = getFlightService();
+                    correct = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("\nInput error. Please choose a number from the options provided.");
+                    correct = true;
+                }
+            }
+            // booked flights
             if (uInput == 1) {
                 try {
                     loop = true;
@@ -46,6 +59,7 @@ public class FlightService {
                         input = scan.nextLine();
                     }
                 }
+            // available flights
             else if (uInput == 2) {
                 loop = true;
                 displayAllFlights(airline);
@@ -59,6 +73,7 @@ public class FlightService {
                 System.out.println(" \nSorry, please choose from the options provided (y - Yes / n - No).");
                 input = scan.nextLine();
             }
+            // flight by customer id
             } else if (uInput == 3) {
                 try {
                     loop = true;
@@ -77,16 +92,20 @@ public class FlightService {
                     loop = true;
                     System.out.println("\nNo customers currently booked.");
                 }
-            }else {
-                System.out.println("\nSorry input not recognised. Try again...");
+                // exit
+            } else if (uInput == 4){
+                    loop = false;
+                } else {
+                    System.out.println("\nInvalid number. Please choose from the options provided.");
+                }
             }
         }
-}
+
 
     public int getFlightService() {
         Scanner flightScanner = new Scanner(System.in);
-        System.out.println("\nPlease select an option from the menu below:");
-        System.out.println("1 - Display flight-numbers of booked flights\n2 - Display flight-numbers of all available flights\n3 - Display flight by customer ID\n4 - Return to access menu");
+        System.out.println("Please select an option from the menu below:");
+        System.out.println("1 - Display flight-numbers of booked flights\n2 - Display flight-numbers of all available flights\n3 - Display flight by customer ID\n4 - Exit");
         int numberInput = flightScanner.nextInt();
         return numberInput;
     }
@@ -121,7 +140,7 @@ public class FlightService {
         System.out.println(" \nAvailable flights: ");
         // 2. loop through all flights and print flight number
         for (Flights f : airline.getFlights()) {
-            System.out.print("\n" + f.getFlightNumber() + ", ");
+            System.out.print(f.getFlightNumber() + ", ");
         }
 
     }
@@ -129,12 +148,14 @@ public class FlightService {
         // 1. make scanner to take customer ID
         Scanner scanner = new Scanner(System.in);
         System.out.println(" \nPlease input customer ID number: ");
-        // 2. find customer from ID value
+        // 2. find customer from ID value with try-catch for not exist
         int id = scanner.nextInt();
+        int num = 0;
         Customer[] customers = airline.getCustomers();
         for (Customer c :
                 customers) {
-            if (id == c.getId()){
+            num = c.getId();
+            if (id == num){
             // 3. find customer's flight and print
             Flights flight = c.getFlight();
             System.out.println("Customer " + id + " flight is: " + flight);

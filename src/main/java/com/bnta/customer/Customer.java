@@ -1,7 +1,10 @@
 package com.bnta.customer;
 
+import com.bnta.flights.FlightNumber;
 import com.bnta.flights.Flights;
 import com.bnta.flights.Airline;
+import com.bnta.flights.Locations;
+
 import java.util.Objects;
 
 public class Customer {
@@ -31,7 +34,7 @@ public class Customer {
 
    // Customer(String name);
 
-    public Customer(String name, String email, int id, int phoneNumber, Luggage luggage, Flights flights){
+    public Customer(String name, String email, int id, int phoneNumber, int passportNumber, Luggage luggage, Flights flights){
         this.name = name;
         this.email = email;
         this.id = id;
@@ -41,12 +44,10 @@ public class Customer {
         this.flights = flights;
     }
 
-    public Customer(){}
 
     public String getName(){
         return name;
     }
-
     public void setName(String name){
         this.name = name;
     }
@@ -82,7 +83,6 @@ public class Customer {
     public Luggage getLuggage() {
         return luggage;
     }
-
     public void setLuggage(Luggage luggage) {
         this.luggage = luggage;
     }
@@ -90,11 +90,13 @@ public class Customer {
     public Flights getFlight() {
         return flights;
     }
-
     public void setFlight(Flights flights) {
         this.flights = flights;
     }
 
+    public void setFlights(Flights flights) {
+        this.flights = flights;
+    }
 
     @Override
     public boolean equals(Object o) {

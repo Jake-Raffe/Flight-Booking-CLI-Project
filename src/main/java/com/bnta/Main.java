@@ -1,28 +1,33 @@
 package com.bnta;
 
+import com.bnta.customer.Customer;
 import com.bnta.customer.CustomerService;
+import com.bnta.customer.Luggage;
 import com.bnta.flights.Airline;
 import com.bnta.flights.FlightService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     // plan:
     //Customer options
-    // 1. book new flight
-    // 2. view booked flights
-    // 3. cancel flight
-    // 4. sign out / end
+        // 1. book new flight
+        // 2. view booked flights
+        // 3. cancel flight
+        // 4. sign out / end
     // Management options
-    // sign in
-    // 1. display all available flights
-    // 2. display all booked flights
-    // 3. display flights for a specific user
-    // 4. sign out / end
+        // sign in
+        // 1. display all available flights
+        // 2. display all booked flights
+        // 3. display flights for a specific user
+        // 4. sign out / end
 
     //classes
     // POJOs
-    //  Airline
+        //  Airline
+        //flight
+        //airline
     // 1. customers/ user
     // name
     // email
@@ -38,9 +43,6 @@ public class Main {
     // end location
     // customers on flight
     // airline
-    // DAO
-    // flightDAO
-    // customerDAO
     // methods
     // 1. writes to file
     // 2. edits (amend/remove from) file
@@ -53,37 +55,55 @@ public class Main {
     // luggage (null, small, large / num of bags)
 
 
+
+
     public static void main(String[] args) {
         // create initial available flights, and instances
         Airline airline = new Airline();
-        Main testMenu = new Main();
-        CustomerService test = new CustomerService();
-        FlightService run = new FlightService();
-        run.createFlights(airline);
+        Main mainInstance = new Main();
+        CustomerService customerInstance = new CustomerService();
+        FlightService flightInstance = new FlightService();
+        flightInstance.createFlights(airline);
+        customerInstance.setCustomers(airline);
+        mainMenu(airline, customerInstance, mainInstance, flightInstance);
 
 
-        // customer/manger screen menu
-        boolean loop = false;
-        do {
-            int uInput = getMenuOptions();
-            if (uInput == 1) {
-                // if they pick customer, run customer menu
-                test.customerMenu(airline);
-            } else if (uInput == 2) {
-                // if they pick manager, run manager menu
-                if(testMenu.managerLogin()){
-                run.managerMenu(airline);
-                    }
-            } else {
-                System.out.println("Sorry, please choose from the options provided.");
-                loop = true;
-            }
-        } while (loop);
     }
+
+        public static void mainMenu(Airline airline, CustomerService test, Main testMenu, FlightService run) {
+            // customer/manger screen menu
+            System.out.println("\nWelcome to MJMC-Airlines!\n\nPlease pick an option from the menu below:");
+            boolean loop = false;
+            int uInput = 0;
+            do {
+                boolean correct = true;
+                while (correct) {
+                    try {
+                        uInput = getMenuOptions();
+                        correct = false;
+                    } catch (InputMismatchException e) {
+                        System.out.println("\nInput error. Please choose a number from the options provided.");
+                        correct = true;
+                    }
+                }
+                if (uInput == 1) {
+                    // if they pick customer, run customer menu
+                    test.customerMenu(airline);
+                } else if (uInput == 2) {
+                    // if they pick manager, run manager menu
+                    if (testMenu.managerLogin()) {
+                        run.managerMenu(airline);
+                    }
+                } else {
+                    System.out.println("\nInvalid number. Please choose from the options provided.");
+                    loop = true;
+                }
+            } while (loop);
+        }
+
 
     static int getMenuOptions() {
         // scanner to take terminal input to either customer or manager menu
-        System.out.println("Welcome to MJMC-Airlines!\nPlease pick an option from the menu below:");
         Scanner menuScanner = new Scanner(System.in);
         System.out.println("1 - Customer access\n2 - Manager access");
         int numberInput = menuScanner.nextInt();
@@ -127,21 +147,33 @@ public class Main {
         // add option to continue after function in manager menu after opt 3
         // general formatting and menu text changes
 
+        // Added exceptions and loops for input error on main / customer / manager menu
+
+// MAIN:
+// * Add initial customer array
+
 // MANAGER FIXES:
 // add try catch in customer ID number (manager menu) for inputMismatchException
 // managerMenu customerID ask if they want to use another service after No customers booked
 // add return to access menu in manager menu and customer menu
+// option to view all customers
+
 // CUSTOMER FIXES:
 // customer menu repeats on quit
 // picking an option from menu repeats menu the first time
 // after inputing customer details, flight is not booked
-// 2 - view existing booking: add null pointer exception for no customer (take from manager) / add wrong format try catch
-// 1 - create booking: make booking method
+// * 2 - view existing booking: add null pointer exception for no customer (take from manager) / add wrong format try catch
+// 1 - create booking:
+    // make booking method
+    // * add try catch for number inputs (InputMismatchException) passport and number
+    // incorrrect flight number trycatch loop
+// 3 - cancel booked flight: ends script
 
 // customer display all flights doesn't work
 
-// add exceptions to menus for inproper input format
-        // annotate all with comments
+
+
+// annotate all with comments
 
 
     //CustomerService TO DO:
