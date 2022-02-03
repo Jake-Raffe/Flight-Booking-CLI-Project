@@ -10,10 +10,9 @@ public class CustomerService {
        // 1. book new flight
         // 2. view booked flights
         // 3. cancel flight
-        // 4. change custom details
-        // 5. sign out / end
+        // 4. sign out / end
     public void customerMenu(Airline airline){
-        System.out.println("Welcome! Please select an option from the menu below:");
+        System.out.println("\nWelcome, valued customer!\nPlease select an option from the menu below:");
         getCustomerOptions();
         boolean loop = true;
         while(loop) {
@@ -22,7 +21,7 @@ public class CustomerService {
                 newCustomer1(airline);
                 bookFlightOption();
 //                bookFlight();
-                System.out.println("Your flight has been booked.\nWould you like to use another service?\n(y - Yes / n - No)");
+                System.out.println("\nYour flight has been booked.\nWould you like to use another service?\n(y - Yes / n - No)");
                 Scanner scan = new Scanner(System.in);
                 String input = scan.nextLine();
                 if (input.equals("y")) {
@@ -33,10 +32,10 @@ public class CustomerService {
                     input = scan.nextLine();
                 }
             } else if (uInput == 2) {
-                displayAllFlights(airline);
+                displayFlightById(airline);
                 loop = false;
             } else if (uInput == 3) {
-                displayFlightById(airline);
+                //cancelFlight(airline);
                 loop = false;
             } else if(uInput ==4){
                 //quitMethod
@@ -47,10 +46,10 @@ public class CustomerService {
             }
         }
     }
-
+    // Customer menu screen
     public static int getCustomerOptions() {
         Scanner flightScanner = new Scanner(System.in);
-        System.out.println("1 - Book new flight\n2 - View existing booking\n3 -Display all flights \n4 - Quit");
+        System.out.println("1 - Book new flight\n2 - View existing booking\n3 - Cancel booked flight \n4 - Return to access menu");
         int numberInput = flightScanner.nextInt();
         return numberInput;
     }
@@ -66,6 +65,7 @@ public class CustomerService {
 
         //customer email scanner
         System.out.println("Enter email:");
+            // validate email to see if it contains '@'
         String customerEmail = validateEmail();
         newCustomer.setEmail(customerEmail);
 
@@ -83,8 +83,8 @@ public class CustomerService {
         newCustomer.setPhoneNumber(phoneNumber);
 
         //while loop to add customers luggage size and convert string input into Enum property
-       boolean sizeDeclared = true;
-       while (sizeDeclared){
+        boolean sizeDeclared = true;
+        while (sizeDeclared){
            luggageSize();
            Scanner scanner2 = new Scanner(System.in);
            String luggage = scanner2.nextLine();
@@ -107,7 +107,7 @@ public class CustomerService {
                 break;
             default:
                 System.out.println("Not a valid option. Try again.");
-       }
+        }
         }
 
 //       //print to check customer info:
@@ -124,10 +124,11 @@ public class CustomerService {
         //generate random number 0-100
         int upperBound = 20;
         int int_random = rand.nextInt(upperBound);
-        // check if ID has already been assigned
+        // if no other customers then ID is unique
         Customer[] customers = airline.getCustomers();
         boolean uniqueID = true;
         if (airline.getCustomers() != null){
+            // if other customers, check that new ID is unique
         while (uniqueID) {
             for (Customer c : customers) {
                 if (int_random == c.getId()) {
@@ -147,8 +148,7 @@ public class CustomerService {
             Scanner scanner = new Scanner(System.in);
                 while (validEmail) {
                      customerEmail = scanner.nextLine();
-                        if (customerEmail.contains("@")) {
-                        System.out.println("Thank you."); //if email contains @ sign then loop breaks and program continues
+                        if (customerEmail.contains("@")) {//if email contains @ sign then loop breaks and program continues
                             validEmail = false;
                         break;
                     } else { //if email does not contain @ then validEmail is false and while loop repeats
@@ -159,12 +159,12 @@ public class CustomerService {
             }
 
             public static void displayFlightById(Airline airline){
-                System.out.println("Enter Customer ID number to see booked flights:  ");
+                System.out.println("\nEnter Customer ID number to see booked flights:  ");
                 Scanner scanner = new Scanner(System.in);
                 int customerID = scanner.nextInt();
                 for (Customer customer: airline.getCustomers()){
                     if (customerID == customer.getId()){
-                        System.out.println(customer.getFlight());
+                        System.out.println("Customer " + customerID + " flight: " + customer.getFlight());
                     }
                     else System.out.println("Invalid ID number.");
                 }
@@ -187,7 +187,7 @@ public class CustomerService {
                 } else if (input.equals("n")) {
                     getCustomerOptions();
                 } else {
-                    System.out.println("Sorry, please choose from the options provided (y - Yes / n - No).");
+                    System.out.println("\nSorry, please choose from the options provided (y - Yes / n - No).");
                     input = scan.nextLine();
                 }
             }
@@ -200,5 +200,3 @@ public class CustomerService {
 
             }
 }
-
-        // make method where they find customer id by putting in other details

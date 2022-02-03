@@ -12,27 +12,23 @@ public class Main {
     // 1. book new flight
     // 2. view booked flights
     // 3. cancel flight
-    // 4. change custom details
-    // 5. sign out / end
+    // 4. sign out / end
     // Management options
     // sign in
-    // 1. add new flight
-    // 2. display all available flights
-    // 3. display all booked flights
-    // 4. display flights for a specific user
-    // 5. book a flight for a specific user ID
-    // 6. change flight details
-    // 7. remove a flight
-    //8. sign out / end
+    // 1. display all available flights
+    // 2. display all booked flights
+    // 3. display flights for a specific user
+    // 4. sign out / end
 
     //classes
     // POJOs
+    //  Airline
     // 1. customers/ user
     // name
     // email
     // id (random generator)
     // phone number
-    // passport number?
+    // passport number
     // luggage?
     // 2. flights
     // flight number (enum?)
@@ -67,24 +63,22 @@ public class Main {
 
 
         // customer/manger screen menu
-        getMenuOptions();
-        boolean loop = true;
-        while (loop) {
+        boolean loop = false;
+        do {
             int uInput = getMenuOptions();
             if (uInput == 1) {
                 // if they pick customer, run customer menu
                 test.customerMenu(airline);
-                loop = false;
             } else if (uInput == 2) {
                 // if they pick manager, run manager menu
                 if(testMenu.managerLogin()){
                 run.managerMenu(airline);
-                loop = false;}
+                    }
             } else {
                 System.out.println("Sorry, please choose from the options provided.");
+                loop = true;
             }
-        }
-
+        } while (loop);
     }
 
     static int getMenuOptions() {
@@ -117,18 +111,35 @@ public class Main {
                     }
                 }
             } else {
-                System.out.println("Don't you remember what your *'Username'* is (hint hint)? Try again:");
+                System.out.println("Don't you remember what your *'Manager'* username is (hint hint)? Try again:");
             }
         }
         return true;
     }
 }
 // TO DO LIST
-// stop first menu repeating
+
+    // FIXED:
+        // stop first menu repeating
+        // add try - catch to Display booked flights
+        // add option to continue after function in manager menu after opt 1
+        // add option to continue after function in manager menu after opt 2
+        // add option to continue after function in manager menu after opt 3
+        // general formatting and menu text changes
+
+// MANAGER FIXES:
+// add try catch in customer ID number (manager menu) for inputMismatchException
+// managerMenu customerID ask if they want to use another service after No customers booked
+// add return to access menu in manager menu and customer menu
+// CUSTOMER FIXES:
 // customer menu repeats on quit
-// give option to continue after function in manager menu
-// customer display all flights doesn't work
+// picking an option from menu repeats menu the first time
 // after inputing customer details, flight is not booked
+// 2 - view existing booking: add null pointer exception for no customer (take from manager) / add wrong format try catch
+// 1 - create booking: make booking method
+
+// customer display all flights doesn't work
+
 // add exceptions to menus for inproper input format
         // annotate all with comments
 
