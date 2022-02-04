@@ -8,51 +8,57 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    // plan:
-    //Customer options
-        // 1. book new flight
-        // 2. view booked flights
-        // 3. cancel flight
-        // 4. sign out / end
-    // Management options
-        // sign in
-        // 1. display all available flights
-        // 2. display all booked flights
-        // 3. display flights for a specific user
-        // 4. sign out / end
+    // Overview:
+        // Main menu
+            // 1. Customer menu
+            // 2. Manager menu (with password log in)
+            // 3. Quit (end process)
+        //Customer options
+            // 1. book new flight
+            // 2. view booked flights
+            // 3. cancel flight
+            // 4. return to main menu
+        // Management options
+            // sign in
+            // 1. display all available flights
+            // 2. display all booked flights
+            // 3. display flights for a specific user
+            // 4. return to main menu
 
-    //classes
+    //classes:
+    // services
+        // Main
+        // main menu services
+        // customer services
+        // manager / flight services
+
     // POJOs
-        //  Airline
-        //flight
-        //airline
-    // 1. customers/ user
-    // name
-    // email
-    // id (random generator)
-    // phone number
-    // passport number
-    // luggage?
-    // 2. flights
-    // flight number (enum?)
-    // date + time
-    // price
-    // start location
-    // end location
-    // customers on flight
-    // airline
-    // methods
-    // 1. writes to file
-    // 2. edits (amend/remove from) file
-    // Service
-    //
+        // Airline
+        // flight
+        // customer
+    // 1. airline
+        // flight array
+        // customer array
+    // 2. customers / user
+        // name
+        // email
+        // id (random UNIQUE number generator)
+        // phone number
+        // passport number
+        // luggage size
+        // flight they're booked on
+    // 3. flights
+        // flight number (enum?)
+        // date + time
+        // price
+        // start location
+        // end location
+        // customers on flight
 
     // enums
-    // airline
-    // flight number(?)
-    // luggage (null, small, large / num of bags)
-
-
+        // locations
+        // flight number
+        // luggage (null, small, medium, large)
 
 
     public static void main(String[] args) {
@@ -66,15 +72,12 @@ public class Main {
         customerInstance.setCustomers(airline);
         // run main menu
         mainInstance.mainMenu(airline, customerInstance, managerInstance, mainInstance);
-
     }
-
-
 }
+
 // TO DO LIST
 
     // FIXED:
-
 
 // MAIN:
 

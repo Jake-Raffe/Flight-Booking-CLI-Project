@@ -73,7 +73,8 @@ public class ManagerService {
                 input = scan.nextLine();
             }
             // flight by customer id
-            } else if (uInput == 3) {
+            }
+            else if (uInput == 3) {
                 try {
                     loop = true;
                     displayFlightById(airline);
@@ -90,6 +91,16 @@ public class ManagerService {
                 } catch (NullPointerException e) {
                     loop = true;
                     System.out.println("\nNo customers currently booked.");
+                    System.out.println(" \nWould you like to use another service?\n(y - Yes / n - No)");
+                    Scanner scan = new Scanner(System.in);
+                    String input = scan.nextLine();
+                    if (input.equals("y")) {
+                    } else if (input.equals("n")) {
+                        loop = false;
+                    } else {
+                        System.out.println("\nSorry, please choose from the options provided (y - Yes / n - No).");
+                        input = scan.nextLine();
+                    }
                 }
                 // exit
             } else if (uInput == 4){
@@ -105,7 +116,6 @@ public class ManagerService {
 
     public int getFlightService() {
         Scanner flightScanner = new Scanner(System.in);
-        System.out.println("Please select an option from the menu below:");
         System.out.println("1 - Display flight-numbers of booked flights\n2 - Display flight-numbers of all available flights\n3 - Display flight by customer ID\n4 - Return to access menu");
         int numberInput = flightScanner.nextInt();
         return numberInput;
@@ -147,25 +157,40 @@ public class ManagerService {
     }
     public void displayFlightById(Airline airline){
         // 1. make scanner to take customer ID
-        Scanner scanner = new Scanner(System.in);
         System.out.println(" \nPlease input customer ID number: ");
-        // 2. find customer from ID value with try-catch for not exist
-        int id = scanner.nextInt();
-        int num = 0;
-        Customer[] customers = airline.getCustomers();
-        for (Customer c :
-                customers) {
-            num = c.getId();
-            if (id == num){
-            // 3. find customer's flight and print
-            Flights flight = c.getFlight();
-            System.out.println("Customer " + id + " flight is: " + flight);
-            break;
-        } else {
-            System.out.println("Customer ID not found.");
+        // 2. find customer from ID value with try-catch for non int input and for not found
+        boolean loop = true;
+        boolean worked = false;
+        int id= 0;
+        while (loop) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            id = scanner.nextInt();
+            loop = false;
+            worked = true;
+        } catch (InputMismatchException e){
+            System.out.println("\nInput error. Please enter a valid ID number:");
+            loop = true;
+            worked = false;
+        }
+        if (worked) {
+            int num = 0;
+            Customer[] customers = airline.getCustomers();
+            for (Customer c :
+                    customers) {
+                num = c.getId();
+                if (id == num) {
+                    // 3. find customer's flight and print
+                    Flights flight = c.getFlight();
+                    System.out.println("Customer " + id + " flight is: " + flight);
+                } else {
+                    System.out.println("Customer ID not found.");
+                }
+            }
+        }
         }
     }
-}
+
     public void createFlights(Airline airline) {
         Flights[] flightArr = new Flights[7];
         Flights flightLondon1 = new Flights();

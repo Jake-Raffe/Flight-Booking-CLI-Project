@@ -52,7 +52,7 @@ public class MenuService {
         return numberInput;
     }
 
-    static  boolean managerLogin() {
+    static boolean managerLogin() {
         int num = 0;
         Scanner scan = new Scanner(System.in);
         boolean loop1 = true;
