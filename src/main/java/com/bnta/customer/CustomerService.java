@@ -1,9 +1,12 @@
 package com.bnta.customer;
 import java.util.InputMismatchException;
 import java.util.Random;
+
+import com.bnta.MenuService;
 import com.bnta.flights.Airline;
 import com.bnta.flights.FlightNumber;
 import com.bnta.flights.Flights;
+import com.bnta.flights.ManagerService;
 
 import java.util.Scanner;
 
@@ -13,7 +16,7 @@ public class CustomerService {
         // 2. view booked flights
         // 3. cancel flight
         // 4. sign out / end
-    public void customerMenu(Airline airline){
+    public void customerMenu(Airline airline, CustomerService customerInstance, ManagerService flightInstance, MenuService mainInstance){
         System.out.println("\nWelcome, valued customer!\nPlease select an option from the menu below:");
         boolean loop = true;
         int uInput = 0;
@@ -59,10 +62,11 @@ public class CustomerService {
                     input = scan.nextLine();
                 }
             } else if (uInput == 3) {
-                //mainMenu();
+                //cancelFlight();
                 loop = false;
             } else if(uInput == 4){
-                //quitMethod
+                // return to main menu
+                mainInstance.mainMenu(airline, customerInstance, flightInstance, mainInstance);
                 loop = false;
             }
             else {
@@ -73,7 +77,7 @@ public class CustomerService {
     // Customer menu screen
     public static int getCustomerOptions() {
         Scanner flightScanner = new Scanner(System.in);
-        System.out.println("1 - Book new flight\n2 - View existing booking\n3 - Cancel booked flight \n4 - Exit");
+        System.out.println("1 - Book new flight\n2 - View existing booking\n3 - Cancel booked flight \n4 - Return to access menu");
         int numberInput = flightScanner.nextInt();
         return numberInput;
     }

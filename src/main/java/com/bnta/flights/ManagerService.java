@@ -1,14 +1,13 @@
 package com.bnta.flights;
-import com.bnta.flights.Airline;
 
+import com.bnta.MenuService;
 import com.bnta.customer.Customer;
-import jdk.javadoc.doclet.Taglet;
+import com.bnta.customer.CustomerService;
 
-import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class FlightService {
+public class ManagerService {
     //1. managerMenu
     //2. While Loop in menus so they can do multiple functions
     //3. Throw error message if user chooses wrong option
@@ -16,7 +15,7 @@ public class FlightService {
 
 
 
-    public void managerMenu(Airline airline){
+    public void managerMenu(Airline airline, CustomerService customerInstance, ManagerService flightInstance, MenuService mainInstance){
     System.out.println("\nWelcome manager. Please select an option from the menu below:");
     boolean loop = true;
     int uInput = 0;
@@ -94,6 +93,8 @@ public class FlightService {
                 }
                 // exit
             } else if (uInput == 4){
+                // return to main menu
+                mainInstance.mainMenu(airline, customerInstance, flightInstance, mainInstance);
                     loop = false;
                 } else {
                     System.out.println("\nInvalid number. Please choose from the options provided.");
@@ -105,7 +106,7 @@ public class FlightService {
     public int getFlightService() {
         Scanner flightScanner = new Scanner(System.in);
         System.out.println("Please select an option from the menu below:");
-        System.out.println("1 - Display flight-numbers of booked flights\n2 - Display flight-numbers of all available flights\n3 - Display flight by customer ID\n4 - Exit");
+        System.out.println("1 - Display flight-numbers of booked flights\n2 - Display flight-numbers of all available flights\n3 - Display flight by customer ID\n4 - Return to access menu");
         int numberInput = flightScanner.nextInt();
         return numberInput;
     }

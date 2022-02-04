@@ -1,10 +1,8 @@
 package com.bnta;
 
-import com.bnta.customer.Customer;
 import com.bnta.customer.CustomerService;
-import com.bnta.customer.Luggage;
 import com.bnta.flights.Airline;
-import com.bnta.flights.FlightService;
+import com.bnta.flights.ManagerService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -58,99 +56,27 @@ public class Main {
 
 
     public static void main(String[] args) {
-        // create initial available flights, and instances
+        // create initial instances
         Airline airline = new Airline();
-        Main mainInstance = new Main();
+        MenuService mainInstance = new MenuService();
         CustomerService customerInstance = new CustomerService();
-        FlightService flightInstance = new FlightService();
-        flightInstance.createFlights(airline);
+        ManagerService managerInstance = new ManagerService();
+        // create initial available flights and customers
+        managerInstance.createFlights(airline);
         customerInstance.setCustomers(airline);
-        mainMenu(airline, customerInstance, mainInstance, flightInstance);
-
+        // run main menu
+        mainInstance.mainMenu(airline, customerInstance, managerInstance, mainInstance);
 
     }
 
-        public static void mainMenu(Airline airline, CustomerService test, Main testMenu, FlightService run) {
-            // customer/manger screen menu
-            System.out.println("\nWelcome to MJMC-Airlines!\n\nPlease pick an option from the menu below:");
-            boolean loop = false;
-            int uInput = 0;
-            do {
-                boolean correct = true;
-                while (correct) {
-                    try {
-                        uInput = getMenuOptions();
-                        correct = false;
-                    } catch (InputMismatchException e) {
-                        System.out.println("\nInput error. Please choose a number from the options provided.");
-                        correct = true;
-                    }
-                }
-                if (uInput == 1) {
-                    // if they pick customer, run customer menu
-                    test.customerMenu(airline);
-                } else if (uInput == 2) {
-                    // if they pick manager, run manager menu
-                    if (testMenu.managerLogin()) {
-                        run.managerMenu(airline);
-                    }
-                } else {
-                    System.out.println("\nInvalid number. Please choose from the options provided.");
-                    loop = true;
-                }
-            } while (loop);
-        }
 
-
-    static int getMenuOptions() {
-        // scanner to take terminal input to either customer or manager menu
-        Scanner menuScanner = new Scanner(System.in);
-        System.out.println("1 - Customer access\n2 - Manager access");
-        int numberInput = menuScanner.nextInt();
-        return numberInput;
-    }
-
-   static  boolean managerLogin() {
-        int num = 0;
-        Scanner scan = new Scanner(System.in);
-        boolean loop1 = true;
-        while (loop1) {
-            System.out.println("Input manager username:");
-            String username = scan.nextLine();
-            if (username.equals("Manager")) {
-                loop1 = false;
-                boolean loop2 = true;
-                while (loop2) {
-                    System.out.println("Input manager password:");
-                    String password = scan.nextLine();
-                    if (password.equals("password")) {
-                        loop2 = false;
-                        num = 1;
-                    } else {
-                        System.out.println("Don't you remember what your *'password'* is (hint hint)? Try again:");
-                    }
-                }
-            } else {
-                System.out.println("Don't you remember what your *'Manager'* username is (hint hint)? Try again:");
-            }
-        }
-        return true;
-    }
 }
 // TO DO LIST
 
     // FIXED:
-        // stop first menu repeating
-        // add try - catch to Display booked flights
-        // add option to continue after function in manager menu after opt 1
-        // add option to continue after function in manager menu after opt 2
-        // add option to continue after function in manager menu after opt 3
-        // general formatting and menu text changes
 
-        // Added exceptions and loops for input error on main / customer / manager menu
 
 // MAIN:
-// * Add initial customer array
 
 // MANAGER FIXES:
 // add try catch in customer ID number (manager menu) for inputMismatchException
