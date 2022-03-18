@@ -1,4 +1,4 @@
-package com.bnta.flights;
+package com.bnta.manager;
 
 import com.bnta.MenuService;
 import com.bnta.customer.Customer;
@@ -23,7 +23,7 @@ public class ManagerService {
             boolean correct = true;
             while (correct) {
                 try {
-                    uInput = getFlightService();
+                    uInput = getManagerOptions();
                     correct = false;
                 } catch (InputMismatchException e) {
                     System.out.println("\nInput error. Please choose a number from the options provided.");
@@ -33,36 +33,49 @@ public class ManagerService {
             // booked flights
             if (uInput == 1) {
                 try {
-                    loop = true;
                     getBookedFlights(airline);
-                    System.out.println("\nWould you like to use another service?\n(y - Yes / n - No)");
-                    Scanner scan = new Scanner(System.in);
-                    String input = scan.nextLine();
-                    if (input.equals("y")) {
-                    } else if (input.equals("n")) {
-                        loop = false;
-                    } else {
-                        System.out.println("Sorry, please choose from the options provided (y - Yes / n - No).");
-                        input = scan.nextLine();}
+                    loop = managerServiceLoop(loop);
+//                    loop = true;
+//                    System.out.println("\nWould you like to use another manager service?\n(y - Yes / n - No)");
+//                    Scanner scan = new Scanner(System.in);
+//                    String input = scan.nextLine();
+//                    if (input.equals("y")) {
+//                    } else if (input.equals("n")) {
+//                        loop = false;
+//                    } else {
+//                        System.out.println("\nSorry, please choose from the options provided (y - Yes / n - No).");
+//                        input = scan.nextLine();}
                 } catch (NullPointerException e) {
                     loop = true;
                     System.out.println(" \nNo flights currently booked.");
-                } System.out.println("\nWould you like to use another service?\n(y - Yes / n - No)");
-                    Scanner scan = new Scanner(System.in);
-                    String input = scan.nextLine();
-                    if (input.equals("y")) {
-                    } else if (input.equals("n")) {
-                        loop = false;
-                    } else {
+                }
+                loop = managerServiceLoop(loop);
+                System.out.println("\nWould you like to use another manager service?\n(y - Yes / n - No)\n ");
+                Scanner scan = new Scanner(System.in);
+                String input = scan.nextLine();
+                if (input.equals("y")) {
+                } else if (input.equals("n")) {
+                    loop = false;
+                } else {
+                    while (correct) {
+                        //String input = scan.nextLine();
                         System.out.println("\nSorry, please choose from the options provided (y - Yes / n - No).");
-                        input = scan.nextLine();
+                        if (input.equals("y")) {
+                            correct = false;
+                        } else if (input.equals("n")) {
+                            correct = false;
+                            loop = false;
+                        } else {
+                            correct = true;
+                        }
                     }
                 }
+            }
             // available flights
             else if (uInput == 2) {
                 loop = true;
                 displayAllFlights(airline);
-            System.out.println(" \nWould you like to use another service?\n(y - Yes / n - No)");
+            System.out.println("\n"+" \nWould you like to use another manager service?\n(y - Yes / n - No)");
             Scanner scan = new Scanner(System.in);
             String input = scan.nextLine();
             if (input.equals("y")) {
@@ -78,7 +91,7 @@ public class ManagerService {
                 try {
                     loop = true;
                     displayFlightById(airline);
-                    System.out.println(" \nWould you like to use another service?\n(y - Yes / n - No)");
+                    System.out.println(" \nWould you like to use another manager service?\n(y - Yes / n - No)");
                     Scanner scan = new Scanner(System.in);
                     String input = scan.nextLine();
                     if (input.equals("y")) {
@@ -91,7 +104,7 @@ public class ManagerService {
                 } catch (NullPointerException e) {
                     loop = true;
                     System.out.println("\nNo customers currently booked.");
-                    System.out.println(" \nWould you like to use another service?\n(y - Yes / n - No)");
+                    System.out.println(" \nWould you like to use another manager service?\n(y - Yes / n - No)");
                     Scanner scan = new Scanner(System.in);
                     String input = scan.nextLine();
                     if (input.equals("y")) {
@@ -113,14 +126,27 @@ public class ManagerService {
             }
         }
 
-
-    public int getFlightService() {
+    public int getManagerOptions() {
         Scanner flightScanner = new Scanner(System.in);
         System.out.println("1 - Display flight-numbers of booked flights\n2 - Display flight-numbers of all available flights\n3 - Display flight by customer ID\n4 - Return to access menu");
         int numberInput = flightScanner.nextInt();
         return numberInput;
     }
 
+    public Boolean managerServiceLoop(Boolean loop) {
+        loop = true;
+        System.out.println("\nWould you like to use another manager service?\n(y - Yes / n - No)");
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine();
+        if (input.equals("y")) {
+            return true;
+        } else if (input.equals("n")) {
+            return false;
+        } else {
+            System.out.println("\nSorry, please choose from the options provided (y - Yes / n - No).");
+        }
+        return true;
+    }
 
     public void getBookedFlights(Airline airline){
         // 1. get flights from airline
@@ -155,6 +181,7 @@ public class ManagerService {
         }
 
     }
+
     public void displayFlightById(Airline airline){
         // 1. make scanner to take customer ID
         System.out.println(" \nPlease input customer ID number: ");
@@ -216,4 +243,5 @@ public class ManagerService {
         flightArr[6] = flightVenice1;
         airline.setFlights(flightArr);
     }
+
 }

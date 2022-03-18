@@ -1,9 +1,6 @@
 package com.bnta.customer;
 
-import com.bnta.flights.FlightNumber;
-import com.bnta.flights.Flights;
-import com.bnta.flights.Airline;
-import com.bnta.flights.Locations;
+import com.bnta.manager.Flights;
 
 import java.util.Objects;
 

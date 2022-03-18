@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-02-16T21:28:08 GMT" name="Command line suite" finished-at="2022-02-16T21:28:08 GMT" duration-ms="84">
+    <groups>
+    </groups>
+    <test started-at="2022-02-16T21:28:08 GMT" name="Command line test" finished-at="2022-02-16T21:28:08 GMT" duration-ms="84">
+      <class name="com.bnta.MenuServiceTest">
+        <test-method signature="testMainMenu()[pri:0, instance:com.bnta.MenuServiceTest@5bcea91b]" started-at="2022-02-16T21:28:08 GMT" name="testMainMenu" finished-at="2022-02-16T21:28:08 GMT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMainMenu -->
+        <test-method signature="testGetMenuOptions()[pri:0, instance:com.bnta.MenuServiceTest@5bcea91b]" started-at="2022-02-16T21:28:08 GMT" name="testGetMenuOptions" finished-at="2022-02-16T21:28:08 GMT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetMenuOptions -->
+        <test-method signature="testManagerLogin()[pri:0, instance:com.bnta.MenuServiceTest@5bcea91b]" started-at="2022-02-16T21:28:08 GMT" name="testManagerLogin" finished-at="2022-02-16T21:28:08 GMT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testManagerLogin -->
+      </class> <!-- com.bnta.MenuServiceTest -->
+      <class name="Testing">
+        <test-method signature="example()[pri:0, instance:Testing@7113b13f]" started-at="2022-02-16T21:28:08 GMT" name="example" finished-at="2022-02-16T21:28:08 GMT" duration-ms="44" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- example -->
+      </class> <!-- Testing -->
+    </test> <!-- Command line test -->
+  </suite> <!-- Command line suite -->
+</testng-results>

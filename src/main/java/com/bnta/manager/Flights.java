@@ -1,9 +1,6 @@
-package com.bnta.flights;
+package com.bnta.manager;
 
 import com.bnta.customer.Customer;
-import com.bnta.customer.Luggage;
-
-import java.time.LocalDateTime;
 
 public class Flights {
     private FlightNumber flightNumber;

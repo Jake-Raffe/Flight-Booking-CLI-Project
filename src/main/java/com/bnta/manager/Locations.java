@@ -1,4 +1,4 @@
-package com.bnta.flights;
+package com.bnta.manager;
 
 public enum Locations {
     LONDON,

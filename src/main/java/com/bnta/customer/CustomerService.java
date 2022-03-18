@@ -3,10 +3,9 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 import com.bnta.MenuService;
-import com.bnta.flights.Airline;
-import com.bnta.flights.FlightNumber;
-import com.bnta.flights.Flights;
-import com.bnta.flights.ManagerService;
+import com.bnta.manager.Airline;
+import com.bnta.manager.Flights;
+import com.bnta.manager.ManagerService;
 
 import java.util.Scanner;
 
